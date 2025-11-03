@@ -1,7 +1,13 @@
 # AIaplication_pro
 
 使用BGE-Large-ZH-v1.5 
-BGE
+
+BGE.ipynb文件为BGE模型的调试代码
+
+classic.ipynb文件包括了对数据的处理，以及传统（xxxx）方法的
+TODO 
+- [ ] 传统方法如何评估的？出了TF-IDF还需不需要引入其他的方法？
+- [ ] 统一评估？那是否要处理输出到同一个文件，例如AFQMC数据集的test/dev/train输出到AFQMC.jsonl中？
 
 
 - [ ] 选取具有代表性的数据集，确保数据多样性和充足性

@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/FlagEmbedding_src"
+    ],
+    "python.defaultInterpreterPath": "/opt/anaconda3/envs/AIAplication_pro/bin/python",
+    "python.languageServer": "Pylance"
+}

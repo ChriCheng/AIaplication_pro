@@ -3,15 +3,15 @@
 #  BGE 训练控制脚本 v2
 # ============================
 # 用法：
-#   bash train_control.sh start   启动训练（清空旧日志）
-#   bash train_control.sh resume  恢复训练（清空旧日志）
-#   bash train_control.sh stop    停止训练
-#   bash train_control.sh status  查看训练状态
-#   bash train_control.sh log     实时查看日志
+#   bash tc.sh start   启动训练（清空旧日志）
+#   bash tc.sh resume  恢复训练（清空旧日志）
+#   bash tc.sh stop    停止训练
+#   bash tc.sh status  查看训练状态
+#   bash tc.sh log     实时查看日志
 # ============================
 
 LOG_FILE="train.log"
-PY_SCRIPT="bge_train.py"
+PY_SCRIPT="bge.py"
 
 start_train () {
   echo "🚀 启动训练..."
@@ -44,6 +44,6 @@ case "$1" in
     tail -f "$LOG_FILE"
     ;;
   *)
-    echo "用法: bash train_control.sh {start|resume|stop|status|log}"
+    echo "用法: bash tc.sh {start|resume|stop|status|log}"
     ;;
 esac

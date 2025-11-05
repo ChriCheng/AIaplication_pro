@@ -8,31 +8,31 @@ tags:
 - dataset_size:440268
 - loss:CosineSimilarityLoss
 widget:
-- source_sentence: 联通怎么取消来电显示
+- source_sentence: 你不要说话
   sentences:
-  - 你是我的小迷妹是什么意思
-  - 联通手机卡怎么取消来电显示
-  - 说慢一点我没听懂
-- source_sentence: 电子烟真的能戒烟吗？哪种好？
+  - 牛油果怎么吃
+  - 你就不能不说话吗
+  - 这个小萝莉叫什么名字。
+- source_sentence: 信号不好
   sentences:
-  - 给妈妈发短信
-  - 电子烟真的能戒烟吗？
-  - 页面会有预计最晚几号退回，显示几号呢？
-- source_sentence: 半的闹钟响的闹钟
+  - 有什么好工作在家坐着就能挣钱
+  - 表现不好
+  - 电子商务是干嘛用的
+- source_sentence: 你爱谁啊
   sentences:
-  - 银行理财产品，哪个好
-  - 四点半的闹钟
-  - 花呗还款 从叠
-- source_sentence: 娶什么样的女人做老婆最好？
+  - 枸杞子怎么吃好
+  - 那你告诉我你爱谁啊
+  - 怎么把时间提到桌面
+- source_sentence: 花呗还款未逾期会产生手续费吗
   sentences:
-  - 绿菊花什么意思
-  - 牛肉丸子怎么做
-  - 什么样的女人做老婆最好？
-- source_sentence: 两点十八，饿了找它。猜一字
+  - 下载个腾讯视频
+  - 我怎么不能提前还款了花呗
+  - 花呗还款晚***天会产生滞纳金嘛
+- source_sentence: 获取了超级用户权限对手机是否有危害
   sentences:
-  - svgfddfgss
-  - 怎么看回家的欲望全集
-  - 很想一个人，怎么办
+  - 没看出来还是个大眼睛啊
+  - 求关于多尔衮的小说
+  - 超级用户会影响手机使用吗
 pipeline_tag: sentence-similarity
 library_name: sentence-transformers
 metrics:
@@ -49,10 +49,10 @@ model-index:
       type: csts-dev
     metrics:
     - type: pearson_cosine
-      value: 0.6861325430129389
+      value: 0.6870936291766154
       name: Pearson Cosine
     - type: spearman_cosine
-      value: 0.677890326753597
+      value: 0.6805276831755165
       name: Spearman Cosine
 ---
 
@@ -106,9 +106,9 @@ from sentence_transformers import SentenceTransformer
 model = SentenceTransformer("sentence_transformers_model_id")
 # Run inference
 sentences = [
-    '两点十八，饿了找它。猜一字',
-    '很想一个人，怎么办',
-    '怎么看回家的欲望全集',
+    '获取了超级用户权限对手机是否有危害',
+    '超级用户会影响手机使用吗',
+    '求关于多尔衮的小说',
 ]
 embeddings = model.encode(sentences)
 print(embeddings.shape)
@@ -117,9 +117,9 @@ print(embeddings.shape)
 # Get the similarity scores for the embeddings
 similarities = model.similarity(embeddings, embeddings)
 print(similarities)
-# tensor([[ 1.0000, -0.0656, -0.0678],
-#         [-0.0656,  1.0000,  0.3072],
-#         [-0.0678,  0.3072,  1.0000]])
+# tensor([[ 1.0000,  0.7056, -0.0644],
+#         [ 0.7056,  1.0000,  0.0409],
+#         [-0.0644,  0.0409,  1.0000]])
 ```
 
 <!--
@@ -157,8 +157,8 @@ You can finetune this model on your own dataset.
 
 | Metric              | Value      |
 |:--------------------|:-----------|
-| pearson_cosine      | 0.6861     |
-| **spearman_cosine** | **0.6779** |
+| pearson_cosine      | 0.6871     |
+| **spearman_cosine** | **0.6805** |
 
 <!--
 ## Bias, Risks and Limitations
@@ -184,13 +184,13 @@ You can finetune this model on your own dataset.
   |         | sentence_0                                                                        | sentence_1                                                                        | label                                                          |
   |:--------|:----------------------------------------------------------------------------------|:----------------------------------------------------------------------------------|:---------------------------------------------------------------|
   | type    | string                                                                            | string                                                                            | float                                                          |
-  | details | <ul><li>min: 4 tokens</li><li>mean: 11.94 tokens</li><li>max: 77 tokens</li></ul> | <ul><li>min: 5 tokens</li><li>mean: 12.06 tokens</li><li>max: 39 tokens</li></ul> | <ul><li>min: 0.0</li><li>mean: 0.47</li><li>max: 1.0</li></ul> |
+  | details | <ul><li>min: 5 tokens</li><li>mean: 11.48 tokens</li><li>max: 46 tokens</li></ul> | <ul><li>min: 5 tokens</li><li>mean: 11.91 tokens</li><li>max: 39 tokens</li></ul> | <ul><li>min: 0.0</li><li>mean: 0.45</li><li>max: 1.0</li></ul> |
 * Samples:
-  | sentence_0               | sentence_1                | label            |
-  |:-------------------------|:--------------------------|:-----------------|
-  | <code>石家庄今天限行吗?</code>   | <code>石家庄今天还限行吗？</code>   | <code>1.0</code> |
-  | <code>女生额头宽适合什么发型</code> | <code>高额头女生适合什么发型？</code> | <code>0.0</code> |
-  | <code>花呗的每月最低还款金额</code> | <code>蚂蚁花呗每个月的最低还款</code> | <code>1.0</code> |
+  | sentence_0                | sentence_1                 | label            |
+  |:--------------------------|:---------------------------|:-----------------|
+  | <code>四个人搬木头，是什么字</code>  | <code>四个人搬木头是什么字</code>    | <code>1.0</code> |
+  | <code>龙飞凤舞什么生肖</code>     | <code>龙飞凤舞不一般是什么生肖？</code> | <code>0.0</code> |
+  | <code>我现在的具体位置是什么？</code> | <code>我现在的具体位置？</code>     | <code>1.0</code> |
 * Loss: [<code>CosineSimilarityLoss</code>](https://sbert.net/docs/package_reference/sentence_transformer/losses.html#cosinesimilarityloss) with these parameters:
   ```json
   {
@@ -334,7 +334,7 @@ You can finetune this model on your own dataset.
 ### Training Logs
 | Epoch  | Step | csts-dev_spearman_cosine |
 |:------:|:----:|:------------------------:|
-| 0.0073 | 200  | 0.6779                   |
+| 0.0073 | 200  | 0.6805                   |
 
 
 ### Framework Versions

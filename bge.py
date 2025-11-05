@@ -7,7 +7,7 @@ import json
 
 # ====== 1. 加载模型 ======
 
-model_name = "BAAI/bge-base-zh-v1.5"
+model_name = "bge-large-zh-v1.5-csts-finetuned"
 model = SentenceTransformer(model_name)
 
 # ====== 2. 加载训练数据 ======

@@ -1,7 +1,7 @@
 from sentence_transformers import SentenceTransformer, InputExample, losses, evaluation
 from torch.utils.data import DataLoader
 import os, json, glob, datetime
-#
+#t
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
 # ====== 1. 自动检测 checkpoint ======

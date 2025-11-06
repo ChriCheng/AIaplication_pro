@@ -11,7 +11,7 @@
 # ============================
 
 LOG_FILE="train.log"
-PY_SCRIPT="bge.py"
+PY_SCRIPT="bge_train.py"
 
 start_train () {
   echo "🚀 启动训练..."

@@ -1,4 +1,5 @@
 CSTS_BGE/
+CSTS_jieba/
 CSTS_pkuseg/
 CSTS_preprocessed/
 bge-base-zh-v1.5-csts-finetune/

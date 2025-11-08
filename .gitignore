@@ -5,4 +5,4 @@ CSTS_preprocessed/
 bge-base-zh-v1.5-csts-finetune/
 checkpoints/
 *.jar
-
+models/

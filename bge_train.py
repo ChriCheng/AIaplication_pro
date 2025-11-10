@@ -4,7 +4,6 @@ import os, json, glob, datetime
 #t
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
-# ====== 1. 自动检测 checkpoint ======
 base_model_dir = os.path.abspath("bge-base-zh-v1.5-csts-finetuned")
 checkpoint_dir = os.path.join(base_model_dir, "checkpoints")
 log_path = "train.log"
@@ -27,11 +26,11 @@ if os.path.exists(checkpoint_dir):
 else:
     log("🚀 第一次训练，未找到 checkpoint 目录。")
 
-# ====== 2. 加载模型 ======
+# 加载模型
 model = SentenceTransformer(base_model_dir)
 log(f"✅ 已加载模型: {base_model_dir}")
 
-# ====== 3. 加载数据 ======
+# 加载数据
 train_path = "CSTS_BGE/train.jsonl"
 dev_path = "CSTS_BGE/dev.jsonl"
 
@@ -47,22 +46,22 @@ train_samples = load_jsonl(train_path)
 dev_samples = load_jsonl(dev_path)
 log(f"📚 数据加载完成: train={len(train_samples)} 条, dev={len(dev_samples)} 条")
 
-# ====== 4. 构造 DataLoader ======
+# DataLoader
 train_dataloader = DataLoader(train_samples, shuffle=True, batch_size=16)
 train_loss = losses.CosineSimilarityLoss(model)
 log("🧩 构建 DataLoader 完成。")
 
-# ====== 5. 构造验证器 ======
+# 构造验证器
 dev_evaluator = evaluation.EmbeddingSimilarityEvaluator.from_input_examples(
     dev_samples, name="csts-dev"
 )
 
-# ====== 6. 自定义评估回调 ======
+# 自定义评估回调
 def eval_callback(score, epoch, steps):
     msg = f"📈 [Epoch {epoch} | Step {steps}] Spearman: {score:.4f}"
     log(msg)
 
-# ====== 7. 开始训练 ======
+# 开始训练
 log("🏋️‍♂️ 开始训练 ...")
 
 model.fit(
